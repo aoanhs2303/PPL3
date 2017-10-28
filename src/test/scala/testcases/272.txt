@@ -1,0 +1,4 @@
+int main(int a[], float b[],float c){
+      a[0]=b[a[1]+10]+5;
+      return a[0];
+    }

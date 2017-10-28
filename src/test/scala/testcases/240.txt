@@ -1,0 +1,5 @@
+int main(){
+      float d,e,f;
+      d=e>f;
+      e=d>=f;
+    }

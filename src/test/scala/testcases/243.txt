@@ -1,0 +1,4 @@
+int a, b, c[5];
+                   int main(){
+                      c[0]=a+b;
+                   }

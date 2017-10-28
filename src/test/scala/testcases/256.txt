@@ -1,0 +1,4 @@
+int main(){
+      int a,b,c;
+      printf(foo(a+b*c));
+    }

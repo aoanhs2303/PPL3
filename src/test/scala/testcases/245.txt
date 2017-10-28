@@ -1,0 +1,4 @@
+int main(){
+      int a,b;
+      if(a>b) printf("b less than a");
+    }

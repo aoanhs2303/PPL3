@@ -1,0 +1,3 @@
+int a, b, c[50];
+                   float d, e, f[50];
+                   boolean func3(boolean c){}

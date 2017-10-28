@@ -1,0 +1,8 @@
+void main(int a[],float c){
+                       int a,b,c;
+                       string c[3],b,d;
+                   }
+                   float float_function(){
+                    float a[10],c[5],f;
+                   }
+    

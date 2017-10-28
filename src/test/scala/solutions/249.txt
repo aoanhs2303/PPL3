@@ -1,0 +1,1 @@
+Program(List(FuncDecl(Id("main"),List(),VoidType,Block(List(),List(Dowhile(List(BinaryOp("=",Id("a"),BinaryOp("+",Id("a"),Id("b"))),If(BinaryOp(">",Id("a"),IntLiteral(10)),Break,None)),BinaryOp("<",Id("a"),IntLiteral(5))))))))

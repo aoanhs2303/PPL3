@@ -1,0 +1,6 @@
+void main(){
+      do 
+       a=a+b;
+       if(a>10) break;
+      while(a<5);
+    }

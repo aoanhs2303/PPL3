@@ -1,0 +1,1 @@
+Program(List(FuncDecl(Id("main"),List(),VoidType,Block(List(VarDecl(Id("d"),FloatType),VarDecl(Id("f"),FloatType),VarDecl(Id("g"),FloatType)),List(BinaryOp("=",Id("d"),BinaryOp("!=",Id("f"),Id("g"))),BinaryOp("=",Id("f"),BinaryOp("==",Id("d"),Id("g"))))))))

@@ -1,0 +1,11 @@
+int main(){
+      int a,b,c;
+      do{
+        if(a>b) a=a+1;
+        else printf(b-c);
+      }
+      if(a-b>c) printf(c);
+      else return a;
+      while a>0 ;
+      return 0;
+    }

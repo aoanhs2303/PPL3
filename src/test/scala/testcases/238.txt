@@ -1,0 +1,5 @@
+void main(){
+      float d,f,g;
+      d=f!=g;
+      f=d==g;
+    }

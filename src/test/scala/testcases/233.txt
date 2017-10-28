@@ -1,0 +1,7 @@
+void main(){
+                       int a,c,b[12];
+                    }
+                    void haha(){
+                      int haha;
+                      float hihi[10];
+                    }

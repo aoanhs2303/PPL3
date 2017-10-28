@@ -1,0 +1,9 @@
+int main(){
+      int a,b,c;
+      do{
+        int a,b,c;
+        if(a>b) continue;
+        else a=a+b;
+      }
+      while a>c;
+    }

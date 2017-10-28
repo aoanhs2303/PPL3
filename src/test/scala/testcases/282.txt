@@ -1,0 +1,15 @@
+int main(){
+      int a,b,c;
+      a=scanf(a);
+      if(a>b){
+        int d,e,f;
+        d=f+e;
+        if(d>e){
+          d=d+1;
+          if(a>=1) d=d+2;
+        }
+        else e=e-1;
+      }
+      else a=a-3;
+      return a;
+    }

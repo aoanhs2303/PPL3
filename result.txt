@@ -1,0 +1,22 @@
+Run starting. Expected test count is: 0
+CheckerSuite:
+- Truong hop khong bi trung bien
+- Bi trung bien int a
+- Trung bien int a kieu array
+- Trung bien int a, o giua co ham
+- Bi trung bien int a thu 2
+- Bien trung ham
+- Ham trung bien
+- Lap lai tham so
+- Lap lai khai bao trong block
+- Lap lai khai bao trong block co tham so
+- Khong loi: khai bao bien
+- Unary: khai bao bien
+- Chua khai bao bien
+- Chua khai bao ham *** FAILED ***
+  CheckerSuite.this.checkCkr(input, expected, 404) was false (CheckerSuite.scala:200)
+Run completed in 416 milliseconds.
+Total number of tests run: 14
+Suites: completed 1, aborted 0
+Tests: succeeded 13, failed 1, canceled 0, ignored 0, pending 0
+*** 1 TEST FAILED ***

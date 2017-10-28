@@ -1,0 +1,3 @@
+int foo(string ngon){}
+                   float foo2(string bad){}
+                   float func(int a, float b[], boolean c[]){}

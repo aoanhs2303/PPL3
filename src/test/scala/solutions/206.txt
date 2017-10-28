@@ -1,0 +1,1 @@
+Program(List(VarDecl(Id("a1"),StringType),VarDecl(Id("a2"),StringType),VarDecl(Id("a3"),StringType)))

@@ -1,0 +1,9 @@
+void main(){
+      int j,j,k;
+      int k[100];
+      for(i=1;i<k;i=i+1){
+        for(j=1;j<k;j=j+1){
+          printf(k[i*j]);
+        }
+      }
+    }

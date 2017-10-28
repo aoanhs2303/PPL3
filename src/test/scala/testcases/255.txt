@@ -1,0 +1,7 @@
+void main(){
+      int a,b,c;
+      for(a=1;a<b;a=a+1){
+        printf("there are %d value in range a->b",a);
+        c=c+2;
+      }
+    }

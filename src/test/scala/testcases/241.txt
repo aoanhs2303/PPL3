@@ -1,0 +1,4 @@
+void main(){
+      int d,e,f;
+      d=e%f;
+    }

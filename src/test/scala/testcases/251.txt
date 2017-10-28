@@ -1,0 +1,6 @@
+int a, b, c[5];
+                   int main(){
+                      float d;
+                      int e, f, g[7];
+                      return e;
+                   }

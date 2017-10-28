@@ -1,0 +1,1 @@
+Program(List(FuncDecl(Id("main"),List(VarDecl(Id("a"),IntType),VarDecl(Id("b"),IntType),VarDecl(Id("c"),IntType)),VoidType,Block(List(),List()))))

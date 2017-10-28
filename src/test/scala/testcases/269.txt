@@ -1,0 +1,8 @@
+int main(){
+      do {
+        for(i=1;i<10;i=i+1){
+          if(i>5) printf(a); 
+        }
+      }
+      while (a<9);
+    }

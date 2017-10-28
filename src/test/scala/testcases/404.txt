@@ -1,0 +1,10 @@
+
+              float c;
+              float goo() {}
+
+              int foo(int j, float c, boolean f) {
+                j;
+                goo();
+                soo();
+              } 
+    

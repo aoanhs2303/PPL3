@@ -1,0 +1,1 @@
+Program(List(VarDecl(Id("a"),FloatType),VarDecl(Id("b"),FloatType),VarDecl(Id("c"),FloatType),VarDecl(Id("c"),FloatType),VarDecl(Id("d"),FloatType),VarDecl(Id("f"),FloatType)))

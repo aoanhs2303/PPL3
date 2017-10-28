@@ -1,0 +1,332 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuite hostname="DESKTOP-IJ9C8LG" name="AstSuite" tests="99" errors="0" failures="2" skipped="0" time="5.017">
+                     <properties>
+      <property name="jline.esc.timeout" value="0"/><property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/><property name="sun.boot.library.path" value="C:\Program Files\Java\jre1.8.0_144\bin"/><property name="java.vm.version" value="25.144-b01"/><property name="java.vm.vendor" value="Oracle Corporation"/><property name="java.vendor.url" value="http://java.oracle.com/"/><property name="path.separator" value=";"/><property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/><property name="file.encoding.pkg" value="sun.io"/><property name="user.country" value="US"/><property name="user.script" value=""/><property name="sun.java.launcher" value="SUN_STANDARD"/><property name="sun.os.patch.level" value=""/><property name="java.vm.specification.name" value="Java Virtual Machine Specification"/><property name="user.dir" value="C:\Users\trann\Desktop\initialAST\initial"/><property name="java.runtime.version" value="1.8.0_144-b01"/><property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/><property name="java.endorsed.dirs" value="C:\Program Files\Java\jre1.8.0_144\lib\endorsed"/><property name="os.arch" value="amd64"/><property name="java.io.tmpdir" value="C:\Users\trann\AppData\Local\Temp\"/><property name="line.separator" value="
+"/><property name="java.vm.specification.vendor" value="Oracle Corporation"/><property name="user.variant" value=""/><property name="os.name" value="Windows 10"/><property name="sun.jnu.encoding" value="Cp1252"/><property name="java.library.path" value="C:\ProgramData\Oracle\Java\javapath;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_144\bin;C:\Program Files (x86)\sbt\bin;C:\Program Files (x86)\scala\bin;C:\Program Files (x86)\Brackets\command;C:\Users\trann\AppData\Local\Microsoft\WindowsApps;C:\Users\trann\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft VS Code\bin;."/><property name="java.specification.name" value="Java Platform API Specification"/><property name="java.class.version" value="52.0"/><property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/><property name="os.version" value="10.0"/><property name="user.home" value="C:\Users\trann"/><property name="user.timezone" value="Asia/Bangkok"/><property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/><property name="file.encoding" value="Cp1252"/><property name="java.specification.version" value="1.8"/><property name="sbt.log.format" value="true"/><property name="java.class.path" value="C:\Program Files (x86)\sbt\bin\sbt-launch.jar"/><property name="user.name" value="trann"/><property name="jline.shutdownhook" value="false"/><property name="java.vm.specification.version" value="1.8"/><property name="sun.java.command" value="xsbt.boot.Boot"/><property name="java.home" value="C:\Program Files\Java\jre1.8.0_144"/><property name="sun.arch.data.model" value="64"/><property name="user.language" value="en"/><property name="java.specification.vendor" value="Oracle Corporation"/><property name="awt.toolkit" value="sun.awt.windows.WToolkit"/><property name="java.vm.info" value="mixed mode"/><property name="java.version" value="1.8.0_144"/><property name="java.ext.dirs" value="C:\Program Files\Java\jre1.8.0_144\lib\ext;C:\Windows\Sun\Java\lib\ext"/><property name="sun.boot.class.path" value="C:\Program Files\Java\jre1.8.0_144\lib\resources.jar;C:\Program Files\Java\jre1.8.0_144\lib\rt.jar;C:\Program Files\Java\jre1.8.0_144\lib\sunrsasign.jar;C:\Program Files\Java\jre1.8.0_144\lib\jsse.jar;C:\Program Files\Java\jre1.8.0_144\lib\jce.jar;C:\Program Files\Java\jre1.8.0_144\lib\charsets.jar;C:\Program Files\Java\jre1.8.0_144\lib\jfr.jar;C:\Program Files\Java\jre1.8.0_144\classes"/><property name="java.vendor" value="Oracle Corporation"/><property name="sun.stderr.encoding" value="cp437"/><property name="file.separator" value="\"/><property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/><property name="sun.io.unicode.encoding" value="UnicodeLittle"/><property name="sun.cpu.endian" value="little"/><property name="sun.stdout.encoding" value="cp437"/><property name="sun.desktop" value="windows"/><property name="sun.cpu.isalist" value="amd64"/>
+    </properties>
+                     <testcase classname="AstSuite" name="1 a simple program with void as return type of main" time="0.628">
+                                                 <failure message="AstSuite.this.checkAst(input, expected, 201) was false" type="org.scalatest.exceptions.TestFailedException">org.scalatest.exceptions.TestFailedException: AstSuite.this.checkAst(input, expected, 201) was false
+	at org.scalatest.Assertions.newAssertionFailedException(Assertions.scala:528)
+	at org.scalatest.Assertions.newAssertionFailedException$(Assertions.scala:527)
+	at org.scalatest.FunSuite.newAssertionFailedException(FunSuite.scala:1560)
+	at org.scalatest.Assertions$AssertionsHelper.macroAssert(Assertions.scala:501)
+	at AstSuite.$anonfun$new$1(AstSuite.scala:12)
+	at org.scalatest.OutcomeOf.outcomeOf(OutcomeOf.scala:85)
+	at org.scalatest.OutcomeOf.outcomeOf$(OutcomeOf.scala:83)
+	at org.scalatest.OutcomeOf$.outcomeOf(OutcomeOf.scala:104)
+	at org.scalatest.Transformer.apply(Transformer.scala:22)
+	at org.scalatest.Transformer.apply(Transformer.scala:20)
+	at org.scalatest.FunSuiteLike$$anon$1.apply(FunSuiteLike.scala:186)
+	at org.scalatest.TestSuite.withFixture(TestSuite.scala:196)
+	at org.scalatest.TestSuite.withFixture$(TestSuite.scala:195)
+	at org.scalatest.FunSuite.withFixture(FunSuite.scala:1560)
+	at org.scalatest.FunSuiteLike.invokeWithFixture$1(FunSuiteLike.scala:184)
+	at org.scalatest.FunSuiteLike.$anonfun$runTest$1(FunSuiteLike.scala:196)
+	at org.scalatest.SuperEngine.runTestImpl(Engine.scala:289)
+	at org.scalatest.FunSuiteLike.runTest(FunSuiteLike.scala:196)
+	at org.scalatest.FunSuiteLike.runTest$(FunSuiteLike.scala:178)
+	at org.scalatest.FunSuite.runTest(FunSuite.scala:1560)
+	at org.scalatest.FunSuiteLike.$anonfun$runTests$1(FunSuiteLike.scala:229)
+	at org.scalatest.SuperEngine.$anonfun$runTestsInBranch$1(Engine.scala:396)
+	at scala.collection.immutable.List.foreach(List.scala:389)
+	at org.scalatest.SuperEngine.traverseSubNodes$1(Engine.scala:384)
+	at org.scalatest.SuperEngine.runTestsInBranch(Engine.scala:379)
+	at org.scalatest.SuperEngine.runTestsImpl(Engine.scala:461)
+	at org.scalatest.FunSuiteLike.runTests(FunSuiteLike.scala:229)
+	at org.scalatest.FunSuiteLike.runTests$(FunSuiteLike.scala:228)
+	at org.scalatest.FunSuite.runTests(FunSuite.scala:1560)
+	at org.scalatest.Suite.run(Suite.scala:1147)
+	at org.scalatest.Suite.run$(Suite.scala:1129)
+	at org.scalatest.FunSuite.org$scalatest$FunSuiteLike$$super$run(FunSuite.scala:1560)
+	at org.scalatest.FunSuiteLike.$anonfun$run$1(FunSuiteLike.scala:233)
+	at org.scalatest.SuperEngine.runImpl(Engine.scala:521)
+	at org.scalatest.FunSuiteLike.run(FunSuiteLike.scala:233)
+	at org.scalatest.FunSuiteLike.run$(FunSuiteLike.scala:232)
+	at org.scalatest.FunSuite.run(FunSuite.scala:1560)
+	at org.scalatest.tools.Framework.org$scalatest$tools$Framework$$runSuite(Framework.scala:314)
+	at org.scalatest.tools.Framework$ScalaTestTask.execute(Framework.scala:507)
+	at sbt.TestRunner.runTest$1(TestFramework.scala:98)
+	at sbt.TestRunner.run(TestFramework.scala:109)
+	at sbt.TestFramework$$anon$2$$anonfun$$lessinit$greater$1.$anonfun$apply$1(TestFramework.scala:254)
+	at sbt.TestFramework$.sbt$TestFramework$$withContextLoader(TestFramework.scala:225)
+	at sbt.TestFramework$$anon$2$$anonfun$$lessinit$greater$1.apply(TestFramework.scala:254)
+	at sbt.TestFramework$$anon$2$$anonfun$$lessinit$greater$1.apply(TestFramework.scala:254)
+	at sbt.TestFunction.apply(TestFramework.scala:263)
+	at sbt.Tests$.$anonfun$toTask$1(Tests.scala:277)
+	at sbt.std.Transform$$anon$3.$anonfun$apply$2(System.scala:44)
+	at sbt.std.Transform$$anon$4.work(System.scala:64)
+	at sbt.Execute.$anonfun$submit$2(Execute.scala:257)
+	at sbt.internal.util.ErrorHandling$.wideConvert(ErrorHandling.scala:17)
+	at sbt.Execute.work(Execute.scala:266)
+	at sbt.Execute.$anonfun$submit$1(Execute.scala:257)
+	at sbt.ConcurrentRestrictions$$anon$4.$anonfun$submitValid$1(ConcurrentRestrictions.scala:167)
+	at sbt.CompletionService$$anon$2.call(CompletionService.scala:32)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</failure>
+                                               </testcase><testcase classname="AstSuite" name="2 another simple program with int as return type of main" time="0.316">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="3 a simple program has a simple call putIntLn" time="0.072">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="4 declaration list int" time="0.026">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="5 declaration list float" time="0.035">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="6 declaration list string" time="0.4">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="7 declaration list have array" time="0.024">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="8 declaration list have array_2" time="0.032">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="9 declaration many list int" time="0.032">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="10 declaration many list float" time="0.03">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="11 declaration many list with array" time="0.039">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="12 declaration many list many type" time="0.028">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="13 declaration function int type" time="0.018">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="14 declaration function void type" time="0.021">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="15 declaration function float type" time="0.018">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="16 declaration function string type" time="0.021">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="17 declaration function bool type" time="0.031">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="18 declaration function with parameter IntType" time="0.023">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="19 declaration function with parameter FloatType" time="0.021">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="20 declaration function with parameter string" time="0.021">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="21 declaration function with parameter bool" time="0.021">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="22 declaration function with arrayType" time="0.031">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="23 declaration function with parameter arrayType" time="0.017">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="24 declaration function with many parameter int" time="0.018">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="25 declaration function with many parameter int and float" time="0.017">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="26 declaration function with many parameter and many type" time="0.022">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="27 declaration var and func" time="0.017">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="28 declaration many var and func" time="0.047">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="29 declaration many var and many func" time="0.017">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="30 declaration many func have parameter" time="0.018">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="31 declaration var int in a function" time="0.017">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="32 declaration list var in a function" time="0.018">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="33 declaration many function have declaration" time="0.091">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="34 function have parameter and declaration inside" time="0.02">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="35 function have add_exp_statement" time="0.061">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="36 function have minus_exp_statement" time="0.027">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="37 function have mul_exp_statement" time="0.027">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="38 function have different_and equal_exp_stmt" time="0.028">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="39 function have less_exp" time="0.032">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="40 function have great than" time="0.05">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="41 function have mod_div exp" time="0.018">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="42 function have not and minus" time="0.048">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="43 function have access array" time="0.072">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="44 function have call_fun" time="0.054">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="45 function have if_stmt no else" time="0.048">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="46 function have if_stmt and else" time="0.042">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="47 function have Dowhile_stmt" time="0.048">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="48 function have for stmt" time="0.042">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="49 function have break_stmt" time="0.107">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="50 function have Continue_stmt" time="0.072">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="51 function have return" time="0.04">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="52 function have return nothing" time="0.025">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="53 function have call fun with argument" time="0.034">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="54 block_stmt in if_stmt" time="0.026">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="55 block_stmt in for_stmt" time="0.03">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="56 call_fun in call_fun" time="0.071">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="57 call_fun nested" time="0.038">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="58 many if_stmt nested" time="0.037">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="59 function if and for_stmt" time="0.03">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="60 test some exp" time="0.08">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="61 access array nested" time="0.028">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="62 function return array int" time="0.023">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="63 function return array float" time="0.07">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="64 function return array boolean" time="0.001">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="65 or exp in if_stmt" time="0.03">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="66 and exp in if_stmt" time="0.027">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="68 test for nested" time="0.067">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="69 test for in Dowhile" time="0.06">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="70 test Continue int Dowhile" time="0.064">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="71 function find max number" time="0.091">
+                                                 <failure message="AstSuite.this.checkAst(input, expected, 271) was false" type="org.scalatest.exceptions.TestFailedException">org.scalatest.exceptions.TestFailedException: AstSuite.this.checkAst(input, expected, 271) was false
+	at org.scalatest.Assertions.newAssertionFailedException(Assertions.scala:528)
+	at org.scalatest.Assertions.newAssertionFailedException$(Assertions.scala:527)
+	at org.scalatest.FunSuite.newAssertionFailedException(FunSuite.scala:1560)
+	at org.scalatest.Assertions$AssertionsHelper.macroAssert(Assertions.scala:501)
+	at AstSuite.$anonfun$new$70(AstSuite.scala:678)
+	at org.scalatest.OutcomeOf.outcomeOf(OutcomeOf.scala:85)
+	at org.scalatest.OutcomeOf.outcomeOf$(OutcomeOf.scala:83)
+	at org.scalatest.OutcomeOf$.outcomeOf(OutcomeOf.scala:104)
+	at org.scalatest.Transformer.apply(Transformer.scala:22)
+	at org.scalatest.Transformer.apply(Transformer.scala:20)
+	at org.scalatest.FunSuiteLike$$anon$1.apply(FunSuiteLike.scala:186)
+	at org.scalatest.TestSuite.withFixture(TestSuite.scala:196)
+	at org.scalatest.TestSuite.withFixture$(TestSuite.scala:195)
+	at org.scalatest.FunSuite.withFixture(FunSuite.scala:1560)
+	at org.scalatest.FunSuiteLike.invokeWithFixture$1(FunSuiteLike.scala:184)
+	at org.scalatest.FunSuiteLike.$anonfun$runTest$1(FunSuiteLike.scala:196)
+	at org.scalatest.SuperEngine.runTestImpl(Engine.scala:289)
+	at org.scalatest.FunSuiteLike.runTest(FunSuiteLike.scala:196)
+	at org.scalatest.FunSuiteLike.runTest$(FunSuiteLike.scala:178)
+	at org.scalatest.FunSuite.runTest(FunSuite.scala:1560)
+	at org.scalatest.FunSuiteLike.$anonfun$runTests$1(FunSuiteLike.scala:229)
+	at org.scalatest.SuperEngine.$anonfun$runTestsInBranch$1(Engine.scala:396)
+	at scala.collection.immutable.List.foreach(List.scala:389)
+	at org.scalatest.SuperEngine.traverseSubNodes$1(Engine.scala:384)
+	at org.scalatest.SuperEngine.runTestsInBranch(Engine.scala:379)
+	at org.scalatest.SuperEngine.runTestsImpl(Engine.scala:461)
+	at org.scalatest.FunSuiteLike.runTests(FunSuiteLike.scala:229)
+	at org.scalatest.FunSuiteLike.runTests$(FunSuiteLike.scala:228)
+	at org.scalatest.FunSuite.runTests(FunSuite.scala:1560)
+	at org.scalatest.Suite.run(Suite.scala:1147)
+	at org.scalatest.Suite.run$(Suite.scala:1129)
+	at org.scalatest.FunSuite.org$scalatest$FunSuiteLike$$super$run(FunSuite.scala:1560)
+	at org.scalatest.FunSuiteLike.$anonfun$run$1(FunSuiteLike.scala:233)
+	at org.scalatest.SuperEngine.runImpl(Engine.scala:521)
+	at org.scalatest.FunSuiteLike.run(FunSuiteLike.scala:233)
+	at org.scalatest.FunSuiteLike.run$(FunSuiteLike.scala:232)
+	at org.scalatest.FunSuite.run(FunSuite.scala:1560)
+	at org.scalatest.tools.Framework.org$scalatest$tools$Framework$$runSuite(Framework.scala:314)
+	at org.scalatest.tools.Framework$ScalaTestTask.execute(Framework.scala:507)
+	at sbt.TestRunner.runTest$1(TestFramework.scala:98)
+	at sbt.TestRunner.run(TestFramework.scala:109)
+	at sbt.TestFramework$$anon$2$$anonfun$$lessinit$greater$1.$anonfun$apply$1(TestFramework.scala:254)
+	at sbt.TestFramework$.sbt$TestFramework$$withContextLoader(TestFramework.scala:225)
+	at sbt.TestFramework$$anon$2$$anonfun$$lessinit$greater$1.apply(TestFramework.scala:254)
+	at sbt.TestFramework$$anon$2$$anonfun$$lessinit$greater$1.apply(TestFramework.scala:254)
+	at sbt.TestFunction.apply(TestFramework.scala:263)
+	at sbt.Tests$.$anonfun$toTask$1(Tests.scala:277)
+	at sbt.std.Transform$$anon$3.$anonfun$apply$2(System.scala:44)
+	at sbt.std.Transform$$anon$4.work(System.scala:64)
+	at sbt.Execute.$anonfun$submit$2(Execute.scala:257)
+	at sbt.internal.util.ErrorHandling$.wideConvert(ErrorHandling.scala:17)
+	at sbt.Execute.work(Execute.scala:266)
+	at sbt.Execute.$anonfun$submit$1(Execute.scala:257)
+	at sbt.ConcurrentRestrictions$$anon$4.$anonfun$submitValid$1(ConcurrentRestrictions.scala:167)
+	at sbt.CompletionService$$anon$2.call(CompletionService.scala:32)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</failure>
+                                               </testcase><testcase classname="AstSuite" name="72 function have parameter array and exp" time="0.098">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="73 break_stmt int for_stmt" time="0.173">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="74 program printf hello world" time="0.04">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="75 declaration function have parameter and return value" time="0.074">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="76 comment one line int a function" time="0.026">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="77 comment after declaration function" time="0.032">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="78 call_fun many argument" time="0.034">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="79 program with some exp" time="0.025">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="80 program with for and if stmt" time="0.03">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="81 function have block_stmt in Dowhile" time="0.031">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="82 function have many stmt in block_stmt" time="0.066">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="83 function have arrayPoiter value return" time="0.024">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="84 many global VarDecl" time="0.021">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="85 List_parameters in mainFunction" time="0.026">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="86 break_stmt in for_stmt" time="0.037">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="87 many call_fun in program" time="0.032">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="88 many if_stmt in program" time="0.022">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="89 many exp in a program" time="0.031">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="90 return_stmt in main" time="0.029">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="91 many Stmts are nested" time="0.025">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="92 list declaration var in block_stmt" time="0.036">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="93 Continue_stmt in for" time="0.111">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="94 block_stmt with nothing" time="0.019">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="95 program with comment" time="0.021">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="96 if_stmt in loop for" time="0.024">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="97 some float and int value" time="0.02">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="98 exp with many operators" time="0.026">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="99 list_stmt in Dowhile_stmt" time="0.022">
+                                                 
+                                               </testcase><testcase classname="AstSuite" name="100 simple program to test something more" time="0.007">
+                                                 
+                                               </testcase>
+                     <system-out><![CDATA[]]></system-out>
+                     <system-err><![CDATA[]]></system-err>
+                   </testsuite>

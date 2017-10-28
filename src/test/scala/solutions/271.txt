@@ -1,0 +1,1 @@
+Program(List(FuncDecl(Id("findmax"),List(VarDecl(Id("a"),IntType),VarDecl(Id("b"),IntType),VarDecl(Id("c"),IntType)),IntType,Block(List(),List(If(BinaryOp("&&",BinaryOp(">",Id("a"),Id("b")),BinaryOp(">",Id("a"),Id("b"))),Return(Some(Id("a"))),Some(If(BinaryOp(">",Id("b"),BinaryOp("%",Id("c"),Id("b"))),Return(Some(Id("b"))),Some(Return(Some(Id("c"))))))))))))

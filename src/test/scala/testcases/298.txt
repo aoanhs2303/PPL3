@@ -1,0 +1,7 @@
+int main(){
+      int a,b,c;
+      float d,e,f;
+      a=c+b>3%4*6/c;
+      d=d/e*f/f-d*e*f;
+      return a;
+    }

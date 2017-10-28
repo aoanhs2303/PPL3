@@ -1,0 +1,3 @@
+int main (int a[],float b[],string s[],boolean c) {
+                      return c;
+                  }

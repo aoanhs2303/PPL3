@@ -1,0 +1,1 @@
+Program(List(FuncDecl(Id("main"),List(VarDecl(Id("a"),ArrayPointerType(IntType)),VarDecl(Id("b"),ArrayPointerType(FloatType)),VarDecl(Id("s"),ArrayPointerType(StringType)),VarDecl(Id("c"),BoolType)),IntType,Block(List(),List(Return(Some(Id("c"))))))))
