@@ -1,7 +1,0 @@
-int main(){
-      float a,b,c;
-      int d,e,f;
-      a=b/c;
-      d=e+f;
-      return d;
-    }

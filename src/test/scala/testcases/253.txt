@@ -1,4 +1,0 @@
-int a, b, c[5];
-                   int main(){
-                     foo(a,b,c[4]);
-                   }

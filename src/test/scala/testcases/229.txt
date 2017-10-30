@@ -1,4 +1,0 @@
-int a, b, c[50];
-                   float d, e, f[50];
-                   int func(int a, float b, boolean c){}
-                   float main(int haha[]){}

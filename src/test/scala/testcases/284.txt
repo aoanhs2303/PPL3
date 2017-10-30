@@ -1,8 +1,0 @@
-int a,b,c;
-                  float d,e,f;
-                  string g,h,k;
-                  boolean t,y[10],u;
-                  int main()
-                  {
-                    return ;
-                  }

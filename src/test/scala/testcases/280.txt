@@ -1,8 +1,0 @@
-int main(){
-      int a,b,c,j,i,k;
-      for(a=4;a<j;a=a+j){
-        if(a>k) return a+k;
-        break;
-      }
-      return a+b+c+d+E+F;
-    }

@@ -1,5 +1,0 @@
-void main(){
-      int a,b;
-      if(a>b) printf("a bigger than b");
-      else printf("b bigger than a");
-    }

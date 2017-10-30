@@ -1,1 +1,0 @@
-Program(List(FuncDecl(Id("main"),List(),IntType,Block(List(),List(If(BinaryOp("=",BinaryOp("&&",BinaryOp(">",Id("e"),BinaryOp("/",UnaryOp("!",UnaryOp("-",Id("a"))),IntLiteral(2))),BinaryOp("<",BinaryOp("+",BinaryOp("%",Id("a"),IntLiteral(3)),Id("f")),Id("a"))),BinaryOp("||",BinaryOp("==",Id("b"),Id("c")),BinaryOp(">=",Id("a"),Id("b")))),Block(List(),List()),None))))))

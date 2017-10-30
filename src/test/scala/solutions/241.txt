@@ -1,1 +1,0 @@
-Program(List(FuncDecl(Id("main"),List(),VoidType,Block(List(VarDecl(Id("d"),IntType),VarDecl(Id("e"),IntType),VarDecl(Id("f"),IntType)),List(BinaryOp("=",Id("d"),BinaryOp("%",Id("e"),Id("f"))))))))

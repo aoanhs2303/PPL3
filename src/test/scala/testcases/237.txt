@@ -1,4 +1,0 @@
-float main(){
-      float a,b,c;
-      a=b*c;
-    }

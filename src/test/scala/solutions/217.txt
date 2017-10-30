@@ -1,1 +1,0 @@
-Program(List(FuncDecl(Id("main"),List(),BoolType,Block(List(),List()))))

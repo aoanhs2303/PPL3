@@ -1,1 +1,0 @@
-Program(List(FuncDecl(Id("main"),List(),IntType,Block(List(VarDecl(Id("a"),IntType),VarDecl(Id("b"),IntType),VarDecl(Id("c"),IntType)),List(CallExpr(Id("foo1"),List(CallExpr(Id("foo2"),List()),CallExpr(Id("foo3"),List(Id("a"),Id("b"),Id("c"))))))))))

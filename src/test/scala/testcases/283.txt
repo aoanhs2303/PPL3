@@ -1,5 +1,0 @@
-float [] main(float a[],float b[]){
-      float d[10],e,f;
-      if(a[1]>b[0]) return a;
-      else return d;
-    }

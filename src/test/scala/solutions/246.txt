@@ -1,1 +1,0 @@
-Program(List(FuncDecl(Id("main"),List(),VoidType,Block(List(VarDecl(Id("a"),IntType),VarDecl(Id("b"),IntType)),List(If(BinaryOp(">",Id("a"),Id("b")),CallExpr(Id("printf"),List(StringLiteral("a bigger than b"))),Some(CallExpr(Id("printf"),List(StringLiteral("b bigger than a"))))))))))

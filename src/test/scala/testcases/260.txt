@@ -1,7 +1,0 @@
-void main(){
-      int a,b,c;
-      a=a+c/b%a-4+5;
-      b=b-a+10;
-      a=!b;
-      c=-c+foo(a+b+c);
-    }

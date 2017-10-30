@@ -1,1 +1,0 @@
-Program(List(FuncDecl(Id("foo"),List(),IntType,Block(List(),List()))))

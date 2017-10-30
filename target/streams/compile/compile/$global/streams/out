@@ -1,6 +1,0 @@
-[0m[[0m[31merror[0m] [0m[0mF:\initialAST\initial\src\main\mc\checker\StaticCheck.scala:48:39: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : mc.utils.Decl[0m
-[0m[[0m[31merror[0m] [0m[0m required: List[?][0m
-[0m[[0m[31merror[0m] [0m[0m		visit(ast.body, c.asInstanceOf[Decl]:::ast.param) // di vao visitBlock[0m
-[0m[[0m[31merror[0m] [0m[0m		                                    ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m

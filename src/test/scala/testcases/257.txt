@@ -1,4 +1,0 @@
-int main(){
-      int a,b,c;
-      foo1(foo2(),foo3(a,b,c));
-    }

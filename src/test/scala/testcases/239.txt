@@ -1,5 +1,0 @@
-void main(){
-      int c,b,d;
-      c=d<b;
-      b=c<=d;
-    }

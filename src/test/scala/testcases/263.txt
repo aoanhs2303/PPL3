@@ -1,5 +1,0 @@
-float [] main()
-                   {
-                      float a[19],b[5],c[10];
-                      return b;
-                   }

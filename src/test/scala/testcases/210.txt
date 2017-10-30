@@ -1,2 +1,0 @@
-float a, b, c;
-                  float c,d,f;

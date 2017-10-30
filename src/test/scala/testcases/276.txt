@@ -1,4 +1,0 @@
-int main(){
-      //declaration VarDecl
-      int a,b,c;
-    }

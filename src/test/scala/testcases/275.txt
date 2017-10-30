@@ -1,5 +1,0 @@
-int main(int a, int b, int c){
-      a=a+b/c8c%s+12-a/c;
-      b=b+a;
-      return b;
-    }

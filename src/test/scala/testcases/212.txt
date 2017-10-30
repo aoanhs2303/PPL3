@@ -1,2 +1,0 @@
-int a[3],toidihoc,haha;
-                   float b[12],c[5],hihi;

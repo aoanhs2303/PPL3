@@ -1,7 +1,0 @@
-float main(){
-      int a,b,c;
-      for(a=11;a<b;a=a+1){
-        if(a>c) a=a+c;
-        else a=a-c;
-      }
-    }

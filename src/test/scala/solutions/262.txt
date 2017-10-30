@@ -1,1 +1,0 @@
-Program(List(FuncDecl(Id("main"),List(),ArrayPointerType(IntType),Block(List(VarDecl(Id("a"),IntType),VarDecl(Id("b"),IntType),VarDecl(Id("c"),ArrayType(IntLiteral(5),IntType))),List(Return(Some(Id("c"))))))))
