@@ -26,7 +26,6 @@ class StaticChecker(ast: AST) extends BaseVisitor with Utils {
 
 	def check() = visit(ast, null)
 
-
 	// *****SYMBOL*****
 
 	def listSymbol(declst: List[Decl], symlst: Any, kind: Kind) = {
@@ -49,6 +48,7 @@ class StaticChecker(ast: AST) extends BaseVisitor with Utils {
 		case VarDecl(n, vt) => Symbol(n.name, vt, null)
 		case FuncDecl(n, p, rt, _) => Symbol(n.name, FunctionType(p.map(_.varType), rt), null)
 	}
+
 
 	override def visitProgram(ast: Program, c: Any): Any = {
 		//checkRepeatDecl(ast.decl)
@@ -76,7 +76,9 @@ class StaticChecker(ast: AST) extends BaseVisitor with Utils {
 		//val nameFunc = c.asInstanceOf[List[FuncDecl]]
 		//println("BBBB: " + nameFunc)
 		//checkRepeatParam(ast.param)
-		val paramlst = listSymbol(ast.param,List(),Parameter)
+		//println("C la cai me gi: " + c)
+		val paramlst = listSymbol(ast.param,List(),Parameter) // parameter
+		//println("p la cai me gi: " + paramlst)
 		visit(ast.body, List(c, paramlst)) // di vao visitBlock
 
 		//checkUndeclaredFunc(ast.name.name, c);
@@ -101,28 +103,54 @@ class StaticChecker(ast: AST) extends BaseVisitor with Utils {
 	}
 
 	override def visitBinaryOp(ast: BinaryOp, c: Any): Any = {
-		println("BinOp:" + c)
-		ast.left.accept(this, c)
-		ast.right.accept(this, c)
+		//println("BinOp:" + c)
+		val ltype = ast.left.accept(this, c) 
+		val rtype = ast.right.accept(this, c)
+		///println(ltype + " " + rtype)
+		(ast.op,ltype,rtype) match {
+			case ("+"|"-"|"*"|"/",IntType,IntType) => IntType
+			case ("+"|"-"|"*"|"/",FloatType,IntType) => FloatType
+			case ("+"|"-"|"*"|"/",IntType,FloatType) => FloatType
+			case ("+"|"-"|"*"|"/",FloatType,FloatType) => FloatType
+			case ("%",IntType,IntType) => IntType
+			case (">"|">="|"<"|"<=",IntType|FloatType,IntType|FloatType) => BoolType
+			case ("=="|"!=",IntType,IntType) => BoolType
+			case ("=="|"!=",BoolType,BoolType) => BoolType
+			case ("&&"|"||",BoolType,BoolType) => BoolType
+			case _ => throw TypeMismatchInExpression(ast)
+		}
 
 	}
 	override def visitUnaryOp(ast: UnaryOp, c: Any): Any = {
 		//println("Unary:"+c)
-		ast.body.accept(this, c)
+		val body = ast.body.accept(this, c)
+		(ast.op, body) match {
+			case ("!", BoolType) => BoolType
+			case ("-", IntType) => IntType
+			case ("-", FloatType) => FloatType
+
+			case _ => throw TypeMismatchInExpression(ast)
+		}
 	}
 	override def visitCallExpr(ast: CallExpr, c: Any): Any = {
 		val name = ast.method.name
-		println("LIST DECL: " + c)
+		//println("LIST DECL: " + c)
 		val argList = c.asInstanceOf[List[Any]]
 		val symlst = argList(0).asInstanceOf[List[Symbol]]
-		println("AAA: " + name)
+		//println("AAA: " + name)
 
 		checkUndeclaredFunc(name, symlst)
 
 	}
 	override def visitArrayCell(ast: ArrayCell, c: Any): Any = {
-		ast.arr.accept(this, c)
+		val arrtype = ast.arr.accept(this, c)
+		val index = ast.idx.accept(this, c)
+		(arrtype,index) match {
+			case (ArrayType(_,eleType),IntType) =>	eleType
+			case (ArrayPointerType(eleType),IntType) =>	eleType
 
+			case _ => throw TypeMismatchInExpression(ast)
+		}
 	}
 
 	override def visitId(ast: Id, c: Any): Any = {
@@ -137,6 +165,7 @@ class StaticChecker(ast: AST) extends BaseVisitor with Utils {
 		//val enviList = argList(1)
 		checkUndeclared(ast.name, symlst)
 		//checkUndeclaredFunc(ast.name, c)
+		//lookup(ast.name, symlst, (x: Symbol) => x.name);
 	}
 
 
@@ -173,31 +202,30 @@ class StaticChecker(ast: AST) extends BaseVisitor with Utils {
 		}
 	}
 
-	def checkUndeclared(name: String, lst: List[Symbol]): Unit = {
+	def checkUndeclared(name: String, lst: List[Symbol]) = {
 		val func = (x: Symbol) => x.name
-		val vari = lst.filterNot(_.typ.isInstanceOf[FunctionType])
-		val tmp = lookup(name, vari, func)
+		val tmp = lookup(name, lst, func)
 		if (tmp == None) {
 			throw Undeclared(Identifier, name)
+		} else if(tmp.get.typ.isInstanceOf[FunctionType]) {
+			throw Undeclared(Identifier, name)
+		} else {
+			tmp.get.typ
 		}
+
 	}
 
 	def checkUndeclaredFunc(nameFunc: String, lst: List[Symbol]): Unit = {
 		val func = (x: Symbol) => x.name
-		val listFunc = lst.filter(_.typ.isInstanceOf[FunctionType])
-		val tmp = lookup(nameFunc, listFunc, func)
+		val tmp = lookup(nameFunc, lst, func)
 		if (tmp == None) {
 			throw Undeclared(Function, nameFunc)
 		}
+		else if(!tmp.get.typ.isInstanceOf[FunctionType]){
+			throw Undeclared(Function, nameFunc)			
+		}
+		else tmp.get.typ.asInstanceOf[FunctionType].output
 	}
-
-	// def checkBooleanType(type: Expr):Unit = {
-	// 	if(type.isInstanceOf[BooleanLiteral]) {
-
-	// 	}
-
-	// }
-
 
 
 	//override def visitFuncDecl(ast: FuncDecl, c: Any): Any = null
@@ -216,10 +244,10 @@ class StaticChecker(ast: AST) extends BaseVisitor with Utils {
 	override def visitContinue(ast: Continue.type, c: Any): Any = null
 	override def visitReturn(ast: Return, c: Any): Any = null
 	override def visitDowhile(ast: Dowhile, c: Any): Any = null
-	override def visitIntLiteral(ast: IntLiteral, c: Any): Any = null
-	override def visitFloatLiteral(ast: FloatLiteral, c: Any): Any = null
-	override def visitStringLiteral(ast: StringLiteral, c: Any): Any = null
-	override def visitBooleanLiteral(ast: BooleanLiteral, c: Any): Any = null
+	override def visitIntLiteral(ast: IntLiteral, c: Any): Any = IntType
+	override def visitFloatLiteral(ast: FloatLiteral, c: Any): Any = FloatType
+	override def visitStringLiteral(ast: StringLiteral, c: Any): Any = StringType
+	override def visitBooleanLiteral(ast: BooleanLiteral, c: Any): Any = BoolType
 
 
 }
