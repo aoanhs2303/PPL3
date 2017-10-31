@@ -166,7 +166,7 @@ class StaticChecker(ast: AST) extends BaseVisitor with Utils {
 		val argList = c.asInstanceOf[List[Any]]
 		val symlst = argList(0).asInstanceOf[List[Symbol]]
 
-		//println("AAA: " + argList)
+		println("AAA: " + argList)
 		//val funcList = c.asInstanceOf[List[FuncDecl]]
 
 
@@ -267,7 +267,27 @@ class StaticChecker(ast: AST) extends BaseVisitor with Utils {
 		val argList = c.asInstanceOf[List[Any]]
 		val returnType = argList(1).asInstanceOf[Type]
 		//Da lay duoc kieu
+		
+		
 
+		if(ast.expr == None && returnType == VoidType) {
+			null
+		} else if (ast.expr == None && returnType != VoidType) {
+			throw TypeMismatchInStatement(ast)
+		}
+		else {
+			val returnX =  ast.expr.get.accept(this, c)
+			(returnX, returnType) match {
+				case (IntType, IntType) => null
+				case (FloatType, FloatType|IntType) => null
+				case (BoolType, BoolType) => null
+				case (ArrayPointerType(_), ArrayPointerType(_)) => null
+				case (ArrayType(_,_), ArrayType(_,_)) => null
+
+				case _ => throw TypeMismatchInStatement(ast)
+			}	
+
+		}
 
 	}
 
