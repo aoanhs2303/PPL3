@@ -67,49 +67,34 @@ class StaticChecker(ast: AST) extends BaseVisitor with Utils {
 	}
 
 	override def visitFuncDecl(ast: FuncDecl, c: Any): Any = {
-		//ast.name.accept(this, c)
-		//ast.param
-		//ast.returnType
-		//ast.body
-		//val listDecl = c.asInstanceOf[List[Decl]]
-		//println("DMM: " + c)
-		//val nameFunc = c.asInstanceOf[List[FuncDecl]]
-		//println("BBBB: " + nameFunc)
-		//checkRepeatParam(ast.param)
-		//println("C la cai me gi: " + c)
 		val paramlst = listSymbol(ast.param,List(),Parameter) // parameter
-		//println("p la cai me gi: " + paramlst)
-		visit(ast.body, List(c, paramlst, ast.returnType)) // di vao visitBlock
+		val isReturn = visit(ast.body, List(ast.returnType, c, paramlst)) // di vao visitBlock
 
-		//checkUndeclaredFunc(ast.name.name, c);
-		//visit(ast, ast.name) // di vao ID
-		//ast.name.foreach(_.accept(this, null))
+		
+		if(isReturn == false && ast.returnType != VoidType) throw FunctionNotReturn(ast.name.name)
+
 	}
 
 	override def visitBlock(ast: Block, c: Any): Any = {
 		val argList = c.asInstanceOf[List[Any]]
-		//val paramlst = argList(1).asInstanceOf[List[Symbol]]
-		val localst = listSymbol(ast.decl,if(argList.size == 2) argList(1) else List() ,null)
 
-		val returnType = argList(2)
-		//checkRepeatDecl(local)
+		val localst = listSymbol(ast.decl,if(argList.size == 3) argList(2) else List() ,null)
 
-		val glolst = argList(0).asInstanceOf[List[Symbol]]
-		val lst = List(localst:::glolst,returnType)
-		
-		//println("LISTDECL" + listDecl)
-		//ast.stmt.foreach(_.accept(this,List(ReturnType,List[decl],.....)))
-		//println(ast.stmt)
-		ast.stmt.foreach((x: Stmt) => x.accept(this, lst))
+		val returnType = argList(0)
 
-		// checkUndeclared(ast.stmt, ast.decl.asInstanceOf[List[VarDecl]])
+		val glolst = argList(1).asInstanceOf[List[Symbol]]
+		val lst = List(returnType, localst:::glolst)
+		//ast.stmt.foreach((x: Stmt) => x.accept(this, lst))
+		ast.stmt.exists(_.accept(this, lst) == true)
+
+
 	}
 
 	override def visitBinaryOp(ast: BinaryOp, c: Any): Any = {
-		//println("BinOp:" + c)
+
 		val ltype = ast.left.accept(this, c) 
 		val rtype = ast.right.accept(this, c)
-		///println(ltype + " " + rtype)
+
 		(ast.op,ltype,rtype) match {
 			case ("+"|"-"|"*"|"/",IntType,IntType) => IntType
 			case ("+"|"-"|"*"|"/",FloatType,IntType) => FloatType
@@ -162,18 +147,12 @@ class StaticChecker(ast: AST) extends BaseVisitor with Utils {
 	}
 
 	override def visitId(ast: Id, c: Any): Any = {
-		//println("Id:"+c)
+		println("id")
 		val argList = c.asInstanceOf[List[Any]]
-		val symlst = argList(0).asInstanceOf[List[Symbol]]
+		val symlst = argList(1).asInstanceOf[List[Symbol]]
 
-		println("AAA: " + argList)
-		//val funcList = c.asInstanceOf[List[FuncDecl]]
-
-
-		//val enviList = argList(1)
 		checkUndeclared(ast.name, symlst)
-		//checkUndeclaredFunc(ast.name, c)
-		//lookup(ast.name, symlst, (x: Symbol) => x.name);
+
 	}
 
 
@@ -250,6 +229,12 @@ class StaticChecker(ast: AST) extends BaseVisitor with Utils {
 		//println("IF: " + c);
 		val exptype = ast.expr.accept(this, c);
 		if(exptype != BoolType) throw TypeMismatchInStatement(ast)
+
+		val thenRt = ast.thenStmt.accept(this, c)
+		val elseRt = ast.elseStmt
+		if(thenRt != true || elseRt == None) false
+		else if(elseRt.get.accept(this, c) == true ) true
+		else false
 	}
 	override def visitFor(ast: For, c: Any): Any = {
 		val expr1 = ast.expr1.accept(this, c);
@@ -260,16 +245,16 @@ class StaticChecker(ast: AST) extends BaseVisitor with Utils {
 			case (IntType, BoolType, IntType) => null //can thi sua lai
 			case _ => throw TypeMismatchInStatement(ast)
 		}
+		false
 	}
 	override def visitBreak(ast: Break.type, c: Any): Any = null
 	override def visitContinue(ast: Continue.type, c: Any): Any = null
+
 	override def visitReturn(ast: Return, c: Any): Any = {
 		val argList = c.asInstanceOf[List[Any]]
-		val returnType = argList(1).asInstanceOf[Type]
+		val returnType = argList(0).asInstanceOf[Type]
 		//Da lay duoc kieu
-		
-		
-
+	
 		if(ast.expr == None && returnType == VoidType) {
 			null
 		} else if (ast.expr == None && returnType != VoidType) {
@@ -281,8 +266,25 @@ class StaticChecker(ast: AST) extends BaseVisitor with Utils {
 				case (IntType, IntType) => null
 				case (FloatType, FloatType|IntType) => null
 				case (BoolType, BoolType) => null
-				case (ArrayPointerType(_), ArrayPointerType(_)) => null
-				case (ArrayType(_,_), ArrayType(_,_)) => null
+				case (StringType, StringType) => null
+
+				case (ArrayPointerType(t1), ArrayPointerType(t2)) => (t1, t2) match {
+					case (IntType, IntType) => null
+					case (FloatType, FloatType) => null
+					case (BoolType, BoolType) => null
+					case (StringType, StringType) => null
+
+					case _ => throw TypeMismatchInStatement(ast)
+
+				}
+				case (ArrayPointerType(t1), ArrayType(_,t2)) => (t1, t2) match {
+					case (IntType,IntType) => null
+                    case (FloatType,FloatType) => null
+                    case (BoolType, BoolType) =>null
+                    case (StringType, StringType) => null
+
+                    case _ => throw TypeMismatchInStatement(ast)
+				}
 
 				case _ => throw TypeMismatchInStatement(ast)
 			}	
@@ -294,6 +296,7 @@ class StaticChecker(ast: AST) extends BaseVisitor with Utils {
 	override def visitDowhile(ast: Dowhile, c: Any): Any = {
 		val exprtype = ast.exp.accept(this, c);
 		if(exprtype != BoolType) throw TypeMismatchInStatement(ast)
+		ast.sl.exists(_.accept(this,c) == true)
 	}
 
 	override def visitIntLiteral(ast: IntLiteral, c: Any): Any = IntType
