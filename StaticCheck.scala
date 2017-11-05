@@ -51,7 +51,19 @@ class StaticChecker(ast: AST) extends BaseVisitor with Utils {
 
 
 	override def visitProgram(ast: Program, c: Any): Any = {
-		val symlst = listSymbol(ast.decl,List(),null)
+		val buildfunc = List(Symbol("getInt",FunctionType(List(),IntType),null),
+									Symbol("putInt",FunctionType(List(IntType),VoidType),null),
+									Symbol("putIntLn",FunctionType(List(IntType),VoidType),null),
+									Symbol("getFloat",FunctionType(List(),FloatType),null),
+									Symbol("getInt",FunctionType(List(FloatType),VoidType),null),
+									Symbol("putFloatLn",FunctionType(List(FloatType),VoidType),null),
+									Symbol("putBool",FunctionType(List(BoolType),VoidType),null),
+									Symbol("putBoolLn",FunctionType(List(BoolType),VoidType),null),
+									Symbol("putString",FunctionType(List(StringType),VoidType),null),
+									Symbol("putStringLn",FunctionType(List(StringType),VoidType),null),
+									Symbol("putLn",FunctionType(List(),VoidType),null))
+
+		val symlst = listSymbol(ast.decl,buildfunc,null)
 		
 		ast.decl.map(x =>
 			if (x.isInstanceOf[FuncDecl]) x.accept(this, symlst))
@@ -81,7 +93,7 @@ class StaticChecker(ast: AST) extends BaseVisitor with Utils {
 		val breCon = argList(0)
 
 		val glolst = argList(2).asInstanceOf[List[Symbol]]
-		
+
 		val lst = List(breCon, returnType, localst:::glolst)
 		//ast.stmt.foreach((x: Stmt) => x.accept(this, lst))
 		ast.stmt.exists(_.accept(this, lst) == true)
@@ -131,8 +143,27 @@ class StaticChecker(ast: AST) extends BaseVisitor with Utils {
 		val symlst = argList(2).asInstanceOf[List[Symbol]]
 		//println("AAA: " + name)
 
-		checkUndeclaredFunc(name, symlst)
+		val functype = checkUndeclaredFunc(name, symlst)
 
+		val paramLst = functype.input
+		val arguLst = ast.params.map(_.accept(this, c)) // tra ve type
+
+
+		if (paramLst.size != arguLst.size) {
+			throw TypeMismatchInExpression(ast)
+		} else {
+			val flag = paramLst.zip(arguLst).forall {
+				case (ArrayPointerType(t1), ArrayPointerType(t2)) => t1 == t2
+				case (ArrayPointerType(t2), ArrayType(_,t1)) => t1 == t2
+				case (FloatType, IntType) => true
+				case (t1, t2) => t1 == t2
+				case _ => {throw TypeMismatchInExpression(ast)}
+			}
+			if (!flag) {
+				throw TypeMismatchInExpression(ast)
+			} 
+		}
+		functype.output
 	}
 	override def visitArrayCell(ast: ArrayCell, c: Any): Any = {
 		val arrtype = ast.arr.accept(this, c)
@@ -205,7 +236,7 @@ class StaticChecker(ast: AST) extends BaseVisitor with Utils {
 		if (tmp == None) {
 			throw Undeclared(Function, nameFunc)
 		}
-		else tmp.get.typ.asInstanceOf[FunctionType].output
+		else tmp.get.typ.asInstanceOf[FunctionType]
 	}
 
 
