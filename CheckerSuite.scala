@@ -1170,134 +1170,99 @@ class CheckerSuite extends FunSuite with TestChecker {
     assert(checkCkr(input,expected,494))
   }
 
-  // /****************UNREACHABLE STATEMENT*****************************/
+  /****************UNREACHABLE STATEMENT*****************************/
 
-  // test("Unreachable statement: unreachable statement after return in if statement") {
-  //   val input = " boolean boo(int a[]){do{if(true) return true; else return false;} 1=a[2]; while true; a[1]=a[1]+1;} "
-  //   val expected = "Unreachable Statement: "+BinaryOp("=",IntLiteral(1),ArrayCell(Id("a"),IntLiteral(2))).toString
-  //   assert(checkCkr(input,expected,494))
-  // }
-  // test("Unreachable statement: No unreachable statement after break - no error") {
-  //   val input =
-  //         """
-  //     int m;
-  //     float n;
-  //     float result;
-  //     float mul_operation(int a,int b){
-  //       do
-  //       if(a!=0&&b!=0){
-  //         break;
-  //         }
-  //       else
-  //         return -1;
-  //         while true;
-  //         a=1;
-  //         return 2.4;
-  //     }
-
-  //   """
-  //   val expected = ""
-  //   assert(checkCkr(input,expected,495))
-  // }
-  // test("Unreachable statement: unreachable statement after continue") {
-  //   val input =
-  //         """
-  //     int static_void_main(){
-  //       int a,b;
-  //       float result;
-  //       if(a>b)
-  //         a;
-  //       else return a;
-  //       do
-  //         continue;
-  //         if(a>1) return a; //Unreachable line
-  //         else return b;
-  //       while (true);
-  //       return 1;
-  //     }
-
-  //   """
-  //   val expected = "Unreachable Statement: "+If(BinaryOp(">",Id("a"),IntLiteral(1)),Return(Some(Id("a"))),Some(Return(Some(Id("b"))))).toString
-  //   assert(checkCkr(input,expected,496))
-  // }
-  // test("Unreachable statement: unreachable statement after do while contain return") {
-  //   val input =
-  //           """
-  //       void main(){
-  //         int a,b,c;
-  //         int index[10];
-  //         for(a=1;a<10;a=a+1){
-  //           main();
-  //         }
-  //         do{
-  //           main();
-  //           if(a>b)
-  //             return;
-  //           else main();
-  //           return;
-  //         }
-  //         while(a==10);
-  //         a=a+b;  //Unreachable line
-  //       }
-  //     """
-  //   val expected = "Unreachable Statement: "+BinaryOp("=",Id("a"),BinaryOp("+",Id("a"),Id("b"))).toString
-  //   assert(checkCkr(input,expected,497))
-  // }
-  // test("Unreachable statement: unreachable statement if else statement contain return") {
-  //   val input =
-  //               """
-  //           float n;
-  //           int checkOddNumber(int n){
-  //             if(n%2==0)
-  //               return n;
-  //             else
-  //             return checkOddNumber(n+1);
-  //             n=1%n;  //Unreachable line
-  //           }
-  //         """
-  //   val expected = "Unreachable Statement: "+BinaryOp("=",Id("n"),BinaryOp("%",IntLiteral(1),Id("n"))).toString
-  //   assert(checkCkr(input,expected,498))
-  // }
-  // test("Unreachable statement: unreachable statement after block return") {
-  //   val input =
-  //           """
-  //       float n;
-  //       void main(){
-  //         int a,b,c;
-  //         int index[10];
-  //         for(a=1;a<10;a=a+1){
-  //           main();
-  //         }
-  //         {return;}
-  //         do{ //Unreachable line
-  //           main();
-  //           if(a>b)
-  //             return;
-  //           else main();
-  //         }
-  //         while(a==10);
-  //       }
-  //     """
-  //   val expected = "Unreachable Statement: "+Dowhile(List(Block(List(),List(CallExpr(Id("main"),List()),If(BinaryOp(">",Id("a"),Id("b")),Return(None),Some(CallExpr(Id("main"),List())))))),BinaryOp("==",Id("a"),IntLiteral(10))).toString
-  //   assert(checkCkr(input,expected,499))
-  // }
-  // test("Unreachable statement: unreachable statement after return expression") {
-  //   val input =
-  //           """
-  //       float n;
-  //       int checkOddNumber(int n){
-  //         if(n%2==0)
-  //           n=1;
-  //         else
-  //         {}
-  //         return checkOddNumber(n+1);
-  //         n=n*n*n;    //Unreachable line
-  //       }
-  //     """
-  //   val expected = "Unreachable Statement: "+ BinaryOp("=",Id("n"),BinaryOp("*",BinaryOp("*",Id("n"),Id("n")),Id("n"))).toString
-  //   assert(checkCkr(input,expected,500))
-  // }
-
+  test("95. Unreachable statement: a = 10 unreachable") {
+    val input = 
+        """ 
+          int foo(int a){
+            do {
+              if(true) return 1; else return 0;
+            } 
+            a = 10; 
+            while true;
+          } 
+        """
+    val expected = "Unreachable Statement: "+BinaryOp("=",Id("a"),IntLiteral(10)).toString
+    assert(checkCkr(input,expected,495))
+  }
+  test("96. Unreachable statement: No error after break") {
+    val input =
+        """
+          int x;
+          float foo(int a,int b) {
+            do {
+              if(true) {
+                break;
+              }
+              else{
+                return -1;
+              }
+            }
+            while true;
+            a = 1;
+            return 1.2;
+          }
+        """
+    val expected = ""
+    assert(checkCkr(input,expected,496))
+  }
+  test("97. Unreachable statement: After continue stmt, next stmt unreachable") {
+    val input =
+        """
+          int static_void_main(){
+            do
+              continue;
+              a = 1;
+            while (true);
+            return 1;
+          }
+        """
+    val expected = "Unreachable Statement: "+BinaryOp("=",Id("a"),IntLiteral(1)).toString
+    assert(checkCkr(input,expected,497))
+  }
+  test("98. Unreachable statement: IF stmt have return all path of it") {
+    val input =
+        """
+          int foo(int a, int b) {
+            if (a > b) {
+              return 1;
+            } else {
+              return 2;
+              a = b;
+            }
+          }
+        """
+    val expected = "Unreachable Statement: "+BinaryOp("=",Id("a"),Id("b")).toString
+    assert(checkCkr(input,expected,498))
+  }
+  test("99. Reachable Statement After For Statement Contain Continue") {
+    val input = 
+    """
+      void main(){
+        for(1;true;1){
+          1;
+          continue;
+        } 
+        "hi";
+        return;
+      }
+    """
+    val expected = ""
+    assert(checkCkr(input,expected,499))
+  }
+  test("100. Unreachable Statement After Block Contain Continue In Dowhile Statement") {
+    val input = """
+    void main(){
+      do
+        {continue;}
+        {1;}
+      while(true); 
+      return;
+    }"""
+    val expected = "Unreachable Statement: "+Block(List(),List(IntLiteral(1))).toString
+    assert(checkCkr(input,expected,500))
+  }
 
 
 
