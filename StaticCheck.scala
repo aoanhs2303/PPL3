@@ -77,7 +77,7 @@ class StaticChecker(ast: AST) extends BaseVisitor with Utils {
 	override def visitFuncDecl(ast: FuncDecl, c: Any): Any = {
 		val paramlst = listSymbol(ast.param,List(),Parameter) // parameter
 	
-		val isReturn = visit(ast.body, List(false, ast.returnType, c, paramlst)) // di vao visitBlock
+		val isReturn = visit(ast.body, List(false, ast.returnType, c, paramlst)).asInstanceOf[List[Boolean]](1) // di vao visitBlock
 
 		if(isReturn == false && ast.returnType != VoidType) throw FunctionNotReturn(ast.name.name)
 
@@ -96,7 +96,15 @@ class StaticChecker(ast: AST) extends BaseVisitor with Utils {
 
 		val lst = List(breCon, returnType, localst:::glolst)
 		//ast.stmt.foreach((x: Stmt) => x.accept(this, lst))
-		ast.stmt.exists(_.accept(this, lst) == true)
+		ast.stmt.foldLeft(List(false,false))((l,s)=> l match {
+			case List(true,_) => throw UnreachableStatement(s)
+			case _ => s.accept(this,lst) match {
+				case List(_,true) => List(true,true)
+				case List(true,false) => List(true,l(1))
+				case List(false,false) => l
+				case _ => List(false,false)
+			}  
+		})
 
 
 	}
@@ -180,7 +188,6 @@ class StaticChecker(ast: AST) extends BaseVisitor with Utils {
 		
 		val argList = c.asInstanceOf[List[Any]]
 		val symlst = argList(2).asInstanceOf[List[Symbol]]
-
 		checkUndeclared(ast.name, symlst)
 
 	}
@@ -240,7 +247,7 @@ class StaticChecker(ast: AST) extends BaseVisitor with Utils {
 	}
 
 
-	//override def visitFuncDecl(ast: FuncDecl, c: Any): Any = null
+
 	override def visitIntType(ast: IntType.type, c: Any): Any = null
 	override def visitFloatType(ast: FloatType.type, c: Any): Any = null
 	override def visitBoolType(ast: BoolType.type, c: Any): Any = null
@@ -249,17 +256,32 @@ class StaticChecker(ast: AST) extends BaseVisitor with Utils {
 	override def visitArrayType(ast: ArrayType, c: Any): Any = null
 	override def visitArrayPointerType(ast: ArrayPointerType, c: Any): Any = null
 
-	//override def visitBlock(ast: Block, c: Any): Any = null
+
 	override def visitIf(ast: If, c: Any): Any = {
-		//println("IF: " + c);
+
 		val exptype = ast.expr.accept(this, c);
+
 		if(exptype != BoolType) throw TypeMismatchInStatement(ast)
 
-		val thenRt = ast.thenStmt.accept(this, c)
-		val elseRt = ast.elseStmt
-		if(thenRt != true || elseRt == None) false
-		else if(elseRt.get.accept(this, c) == true ) true
-		else false
+		val tr = ast.thenStmt.accept(this, c)
+		tr match {
+			case List(_,_) => {
+				if(ast.elseStmt == None) List(false,false)
+				else {
+					val thenRt = tr.asInstanceOf[List[Boolean]]
+					val el = ast.elseStmt.get.accept(this, c) 
+					el match {
+						case List(_,_) => {
+							val elRt = el.asInstanceOf[List[Boolean]]
+							List((thenRt(0)&&elRt(0))||(thenRt(1)&&elRt(1)),thenRt(1)&&elRt(1))
+						}
+						case _ => List(false,false)
+					}
+				}
+			}
+			case _ => List(false,false)
+		}  
+		
 	}
 	override def visitFor(ast: For, c: Any): Any = {
 		val expr1 = ast.expr1.accept(this, c);
@@ -274,24 +296,23 @@ class StaticChecker(ast: AST) extends BaseVisitor with Utils {
 		val newList = List(true,argList(1),argList(2))
 		ast.loop.accept(this,newList)
 		
-		false
+		List(false,false)
 	}
 	override def visitBreak(ast: Break.type, c: Any): Any = {
-		//some thing
+
 		val argList = c.asInstanceOf[List[Any]]
 		val breCon = argList(0)
 
 		if(breCon == false) throw BreakNotInLoop
-
-
+		List(true,false)
 	}
 	override def visitContinue(ast: Continue.type, c: Any): Any = {
-		//some thing
+
 		val argList = c.asInstanceOf[List[Any]]
 		val breCon = argList(0)
 
 		if(breCon == false) throw ContinueNotInLoop
-
+		List(true,false)
 	}
 
 	override def visitReturn(ast: Return, c: Any): Any = {
@@ -334,7 +355,7 @@ class StaticChecker(ast: AST) extends BaseVisitor with Utils {
 			}	
 
 		}
-		true
+		List(true,true)
 	}
 
 	override def visitDowhile(ast: Dowhile, c: Any): Any = {
@@ -342,8 +363,19 @@ class StaticChecker(ast: AST) extends BaseVisitor with Utils {
 		val newList = List(true,argList(1),argList(2))
 		
 		val exprtype = ast.exp.accept(this, c);
+		val slReturn = ast.sl.foldLeft(List(false,false))((lst,stmt)=>{
+			lst match {
+				case List(true,_) => throw UnreachableStatement(stmt)
+				case _ => stmt.accept(this,newList) match {
+					case List(_,true) => List(true,true)
+					case List(true,false) => List(true,lst(1))
+					case List(false,false) => lst
+					case _ => List(false,false)
+				}  
+			} 
+		})
 		if(exprtype != BoolType) throw TypeMismatchInStatement(ast)
-		ast.sl.exists(_.accept(this, newList) == true)
+		List(slReturn(1),slReturn(1))
 	}
 
 	override def visitIntLiteral(ast: IntLiteral, c: Any): Any = IntType
